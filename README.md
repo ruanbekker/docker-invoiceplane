@@ -18,33 +18,11 @@
 
 Thanks to [sameersbn/docker-invoiceplane](https://github.com/sameersbn/docker-invoiceplane) for this project.
 
-# Introduction
+## Introduction
 
 InvoicePlane is a self-hosted open source application for managing your quotes, invoices, clients and payments.
 
 This is a fork from [sameersbn/docker-invoiceplane](https://github.com/sameersbn/docker-invoiceplane) to support invoiceplane running on arm64 architecture.
-
-## Contributing
-
-If you find this image useful here's how you can help:
-
-- Send a pull request with your awesome features and bug fixes
-- Help users resolve their [issues](../../issues?q=is%3Aopen+is%3Aissue).
-- Support the development of this image with a [donation](http://www.damagehead.com/donate/)
-
-## Issues
-
-Before reporting your issue please try updating Docker to the latest version and check if it resolves the issue. Refer to the Docker [installation guide](https://docs.docker.com/installation) for instructions.
-
-SELinux users should try disabling SELinux using the command `setenforce 0` to see if it resolves the issue.
-
-If the above recommendations do not help then [report your issue](../../issues/new) along with the following information:
-
-- Output of the `docker version` and `docker info` commands
-- The `docker run` command or `docker-compose.yml` used to start the image. Mask out the sensitive bits.
-- Please state if you are using [Boot2Docker](http://www.boot2docker.io), [VirtualBox](https://www.virtualbox.org), etc.
-
-# Getting started
 
 ## Installation
 
@@ -116,9 +94,9 @@ mkdir -p /srv/docker/invoiceplane
 chcon -Rt svirt_sandbox_file_t /srv/docker/invoiceplane
 ```
 
-# Maintenance
+## Maintenance
 
-## Creating backups
+### Creating backups
 
 The image allows users to create backups of the InvoicePlane installation using the `app:backup:create` command or the `invoiceplane-backup-create` helper script. The generated backup consists of uploaded files and the sql database.
 
@@ -147,7 +125,7 @@ The backup will be created in the `backups/` folder of the [Persistent](#persist
 
 By default backups are held indefinitely. Using the `INVOICEPLANE_BACKUPS_EXPIRY` parameter you can configure how long (in seconds) you wish to keep the backups. For example, setting `INVOICEPLANE_BACKUPS_EXPIRY=604800` will remove backups that are older than 7 days. Old backups are only removed when creating a new backup, never automatically.
 
-## Restoring Backups
+### Restoring Backups
 
 Backups created using instructions from the [Creating backups](#creating-backups) section can be restored using the `app:backup:restore` argument.
 
@@ -173,7 +151,7 @@ docker run --name invoiceplane -it --rm [OPTIONS] \
   ruanbekker/invoiceplane:1.5.11 app:backup:restore BACKUP=1417624827_invoiceplane_backup.tar
 ```
 
-## Upgrading
+### Upgrading
 
 To upgrade to newer releases:
 
@@ -205,7 +183,7 @@ To upgrade to newer releases:
 
 Point your browser to [http://invoice.example.com:10080/setup](http://invoice.example.com:10080/setup) to complete the upgrade.
 
-## Shell Access
+### Shell Access
 
 For debugging and maintenance purposes you may want access the containers shell. If you are using Docker version `1.3.0` or higher you can access a running containers shell by starting `bash` using `docker exec`:
 
