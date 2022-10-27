@@ -1,5 +1,5 @@
 
-# ruanbekker/invoiceplane:1.5.11
+# invoiceplane-multi-arch
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
@@ -14,11 +14,15 @@
   - [Upgrading](#upgrading)
   - [Shell Access](#shell-access)
 
+## Credit
+
+Thanks to [sameersbn/docker-invoiceplane](https://github.com/sameersbn/docker-invoiceplane) for this project.
+
 # Introduction
 
-`Dockerfile` to create a [Docker](https://www.docker.com/) container image for [InvoicePlane](https://invoiceplane.com/).
-
 InvoicePlane is a self-hosted open source application for managing your quotes, invoices, clients and payments.
+
+This is a fork from [sameersbn/docker-invoiceplane](https://github.com/sameersbn/docker-invoiceplane) to support invoiceplane running on arm64 architecture.
 
 ## Contributing
 
