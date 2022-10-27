@@ -1,8 +1,8 @@
-FROM ubuntu:bionic-20190612
-LABEL maintainer="sameer@damagehead.com"
+FROM arm64v8/ubuntu:bionic-20221019
+LABEL invoiceplane-version="1.5.11"
 
 ENV PHP_VERSION=7.2 \
-    INVOICEPLANE_VERSION=1.5.9 \
+    INVOICEPLANE_VERSION=1.5.11 \
     INVOICEPLANE_USER=www-data \
     INVOICEPLANE_INSTALL_DIR=/var/www/invoiceplane \
     INVOICEPLANE_DATA_DIR=/var/lib/invoiceplane \
@@ -10,6 +10,8 @@ ENV PHP_VERSION=7.2 \
 
 ENV INVOICEPLANE_BUILD_DIR=${INVOICEPLANE_CACHE_DIR}/build \
     INVOICEPLANE_RUNTIME_DIR=${INVOICEPLANE_CACHE_DIR}/runtime
+
+RUN mkdir -p ${INVOICEPLANE_INSTALL_DIR} ${INVOICEPLANE_DATA_DIR} ${INVOICEPLANE_BUILD_DIR} ${INVOICEPLANE_RUNTIME_DIR}
 
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y wget sudo unzip \

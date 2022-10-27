@@ -1,6 +1,5 @@
-[![Docker Repository on Quay.io](https://quay.io/repository/sameersbn/invoiceplane/status "Docker Repository on Quay.io")](https://quay.io/repository/sameersbn/invoiceplane)
 
-# sameersbn/invoiceplane:1.5.9-3
+# ruanbekker/invoiceplane:1.5.11
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
@@ -45,18 +44,10 @@ If the above recommendations do not help then [report your issue](../../issues/n
 
 ## Installation
 
-Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/sameersbn/invoiceplane) and is the recommended method of installation.
-
-> **Note**: Builds are also available on [Quay.io](https://quay.io/repository/sameersbn/invoiceplane)
+Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/ruanbekker/invoiceplane) and is the recommended method of installation.
 
 ```bash
-docker pull sameersbn/invoiceplane:1.5.9-3
-```
-
-Alternatively you can build the image yourself.
-
-```bash
-docker build -t sameersbn/invoiceplane github.com/sameersbn/docker-invoiceplane
+docker pull ruanbekker/invoiceplane:1.5.11
 ```
 
 ## Quickstart
@@ -64,7 +55,7 @@ docker build -t sameersbn/invoiceplane github.com/sameersbn/docker-invoiceplane
 The quickest way to start using this image is with [docker-compose](https://docs.docker.com/compose/).
 
 ```bash
-wget https://raw.githubusercontent.com/sameersbn/docker-invoiceplane/master/docker-compose.yml
+wget https://raw.githubusercontent.com/ruanbekker/docker-invoiceplane/master/docker-compose.yml
 ```
 
 Update the `INVOICEPLANE_URL` environment variable in the `docker-compose.yml` file with the url from which InvoicePlane will be externally accessible.
@@ -93,7 +84,7 @@ docker run --name invoiceplane -itd --restart=always \
   --env 'INVOICEPLANE_FQDN=invoice.example.com' \
   --env 'INVOICEPLANE_TIMEZONE=Asia/Kolkata' \
   --volume /srv/docker/invoiceplane/invoiceplane:/var/lib/invoiceplane \
-  sameersbn/invoiceplane:1.5.9-3 app:invoiceplane
+  ruanbekker/invoiceplane:1.5.11 app:invoiceplane
 ```
 
 Step 3. Launch a NGINX frontend container
@@ -103,7 +94,7 @@ docker run --name invoiceplane-nginx -itd --restart=always \
   --link invoiceplane:php-fpm \
   --volumes-from invoiceplane \
   --publish 10080:80 \
-  sameersbn/invoiceplane:1.5.9-3 app:nginx
+  ruanbekker/invoiceplane:1.5.11 app:nginx
 ```
 
 Point your browser to [http://invoice.example.com:10080/setup](http://invoice.example.com:10080/setup) to complete the setup.
@@ -137,7 +128,7 @@ Relaunch the container with the `app:backup:create` argument.
 
 ```bash
 docker run --name invoiceplane -it --rm [OPTIONS] \
-  sameersbn/invoiceplane:1.5.9-3 app:backup:create
+  ruanbekker/invoiceplane:1.5.11 app:backup:create
 ```
 
 The backup will be created in the `backups/` folder of the [Persistent](#persistence) volume. You can change the location using the `INVOICEPLANE_BACKUPS_DIR` configuration parameter.
@@ -166,7 +157,7 @@ Relaunch the container with the `app:backup:restore` argument. Ensure you launch
 
 ```bash
 docker run --name invoiceplane -it --rm [OPTIONS] \
-  sameersbn/invoiceplane:1.5.9-3 app:backup:restore
+  ruanbekker/invoiceplane:1.5.11 app:backup:restore
 ```
 
 A list of existing backups will be displayed. Select a backup you wish to restore.
@@ -175,7 +166,7 @@ To avoid this interaction you can specify the backup filename using the `BACKUP`
 
 ```bash
 docker run --name invoiceplane -it --rm [OPTIONS] \
-  sameersbn/invoiceplane:1.5.9-3 app:backup:restore BACKUP=1417624827_invoiceplane_backup.tar
+  ruanbekker/invoiceplane:1.5.11 app:backup:restore BACKUP=1417624827_invoiceplane_backup.tar
 ```
 
 ## Upgrading
@@ -185,7 +176,7 @@ To upgrade to newer releases:
   1. Download the updated Docker image:
 
   ```bash
-  docker pull sameersbn/invoiceplane:1.5.9-3
+  docker pull ruanbekker/invoiceplane:1.5.11
   ```
 
   2. Stop the currently running image:
@@ -205,7 +196,7 @@ To upgrade to newer releases:
   ```bash
   docker run -name invoiceplane -itd \
     [OPTIONS] \
-    sameersbn/invoiceplane:1.5.9-3
+    ruanbekker/invoiceplane:1.5.11
   ```
 
 Point your browser to [http://invoice.example.com:10080/setup](http://invoice.example.com:10080/setup) to complete the upgrade.

@@ -6,10 +6,12 @@ if [[ ! -f ${INVOICEPLANE_BUILD_DIR}/v${INVOICEPLANE_VERSION}.zip ]]; then
   wget -nv "https://github.com/InvoicePlane/InvoicePlane/releases/download/v${INVOICEPLANE_VERSION}/v${INVOICEPLANE_VERSION}.zip" \
     -O ${INVOICEPLANE_BUILD_DIR}/v${INVOICEPLANE_VERSION}.zip
 fi
-
+mkdir ip
+pushd ip
 echo "Extracting InvoicePlane ${INVOICEPLANE_VERSION}..."
 unzip ${INVOICEPLANE_BUILD_DIR}/v${INVOICEPLANE_VERSION}.zip
-mv ip ${INVOICEPLANE_INSTALL_DIR}
+mv * ${INVOICEPLANE_INSTALL_DIR}
+popd
 
 mv ${INVOICEPLANE_INSTALL_DIR}/uploads ${INVOICEPLANE_INSTALL_DIR}/uploads.template
 rm -rf ${INVOICEPLANE_BUILD_DIR}/InvoicePlane-${INVOICEPLANE_VERSION}.tar.gz
